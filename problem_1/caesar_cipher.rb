@@ -5,4 +5,8 @@ require "./methods"
 text = get_text
 key = get_key
 
-puts "Your phrase is \"#{text}\" and your key is #{key}."
+puts "Your phrase is \"#{text}\" and your key is #{key}.\n"
+
+encrypted_text = caesar_cipher(text,key)
+
+puts "Your encrypted phrase is \"#{encrypted_text}\""
