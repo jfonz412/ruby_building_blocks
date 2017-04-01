@@ -19,7 +19,22 @@ end
 
 
 def bubble_sort_by(array)
-  yield(array[0],array[1])
+  temp = 0
+  swapped = false
+
+  for num in 0..array.length
+    if array[num + 1] != nil
+  	  if yield(array[num], array[num+1]) > 0
+  	    temp = array[num]
+        array[num] = array[num+1]
+        array[num+1] = temp
+        swapped = true
+  	  end
+    end
+  end
+
+  swapped ? bubble_sort_by(array) {|left,right| left.length - right.length} : array
+
 end
 
 #==================================================================
@@ -31,9 +46,10 @@ puts bubble_sort(test_array)
 puts "NEXT"
 
 #testing bubble_sort_by
-test_array = [3,2,5,1,6,7,9,8,4]
+test_array2 = ["hi","hello","hey"]
 
-bubble_sort_by(test_array) do |left, right|
-	puts left
-	puts right
+answer = bubble_sort_by(test_array2) do |left, right|
+  left.length - right.length
 end
+
+puts answer
